@@ -4,6 +4,7 @@ from collections import defaultdict
 read = sys.stdin.readline
 
 
+# 1576 ms
 # 1000 ~ 9999 사이의 소수를 에라토스테네스의 체로 구함
 def is_prime():
     for i in range(2, 101):
@@ -34,7 +35,7 @@ def bfs(start, end):
         if one == end:
             return cnt
         else:
-            q.append([one, cnt])
+            q.append((one, cnt))
     visited[start] = 1
     while q:
         x = q.popleft()
@@ -49,7 +50,7 @@ def bfs(start, end):
                 return x[1]+1
             else:
                 visited[one] = 1
-                q.append([one, x[1]+1])
+                q.append((one, x[1]+1))
         # print(q)
 
 
