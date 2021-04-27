@@ -1,4 +1,5 @@
 import sys
+from collections import defaultdict
 read = sys.stdin.readline
 
 n, k = map(int, read().split())
@@ -15,7 +16,7 @@ for i in range(n):
 
 arr.sort(key=len)
 arr = list(filter(lambda x: len(x) <= k, arr))
-print(arr)
+# print(arr)
 if k == 0:
     cnt = 0
     for one in arr:
@@ -38,24 +39,22 @@ else:
             break
 
     # 길이 0 아닌 애들
-    teach = set()
+    voca = defaultdict(int)
     for i in range(idx, len(arr)):
         flag = True
         length = len(arr[i])
         for j in range(length):
-            teach.add(arr[i][j])
-            if len(teach) > k and j != length - 1:
-                flag = False
-            # elif len(teach) == k:
-            #     break
-        if flag:
-            if len(teach) > k:
-                break
-            cnt += 1
-        else:
-            break
+            voca[arr[i][j]] += 1 / length
+    voca = sorted(voca.items(), key=lambda x : x[1])
+    # print(voca)
 
-    print(cnt)
+    while voca:
+        x = voca.pop()
+        cnt += x[1]
+        k -= 1
+        if k == 0: break
+
+    print(int(cnt))
 
 # 반례
 # 6 6
@@ -68,3 +67,8 @@ else:
 # r, z, z, z, z
 # r 1개 인식하고 끝나버림
 # 더 많은 애를 선택하도록 알고리즘 수정필요
+
+
+# 2 6
+# antaxtica
+# antaytica
