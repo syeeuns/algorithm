@@ -23,3 +23,11 @@ int countNumNodes (struct Node *root){
     }
 };
 
+bool checkComplete(struct Node *root, int index, int numberNodes){
+    if (root == NULL)
+        return true;
+    if (index >= numberNodes)
+        return false;
+
+    return (checkComplete(root->left, 2 * index + 1, numberNodes) && checkComplete(root->left, 2 * index + 2, numberNodes))
+};
