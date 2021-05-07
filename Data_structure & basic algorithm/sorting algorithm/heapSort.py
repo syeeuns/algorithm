@@ -29,5 +29,4 @@ def heapSort(arr):
 
 
 heapSort(arr)
-n = len(arr)
 print(arr)
