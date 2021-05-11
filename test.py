@@ -1,6 +1,10 @@
 import sys
-import math
-from collections import deque
+import heapq
 read = sys.stdin.readline
 
-print(math.ceil(5/3))
+# li = [1,5,2,7,4,2,6,9,10]
+li = [1]
+
+print(heapq.heappop(li))
+print(li)
+print(heapq.heappop(li))
